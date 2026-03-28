@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Servy — Présentation</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@400;500;600;700&display=swap');
+:root{--peach:#E9BC8F;--sage:#9BC8A7;--teal:#4BA592;--teal-d:#2D7A6A;--cream:#E9EDCA;--orange:#F68C24;--bord:#9E1D21;--dark:#1A140E;--off:#F5F2E8;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{width:100%;height:100%;font-family:'DM Sans',sans-serif;background:#111;overflow:hidden;}
+.deck{width:100vw;height:100vh;position:relative;}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .5s,transform .5s;transform:translateX(60px);overflow:hidden;padding:16px 20px 72px;}
+.slide.active{opacity:1;pointer-events:all;transform:translateX(0);}
+.slide.prev{transform:translateX(-60px);}
+.b{position:absolute;border-radius:50%;pointer-events:none;}
+.nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;z-index:100;background:rgba(26,20,14,.75);backdrop-filter:blur(12px);padding:10px 18px;border-radius:50px;border:1px solid rgba(255,255,255,.1);}
+.nd{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .3s;border:none;}
+.nd.active{background:var(--orange);width:20px;border-radius:4px;}
+.nb{background:none;border:none;color:rgba(255,255,255,.6);font-size:16px;cursor:pointer;padding:2px 6px;font-family:'DM Sans',sans-serif;}
+.sf{position:absolute;bottom:68px;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px;z-index:10;}
+.sfl{font-family:'Playfair Display',serif;font-size:12px;font-weight:700;}
+@keyframes fi{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.slide.active .inner{animation:fi .5s ease both;}
+
+/* S1 */
+#s1{background:var(--cream);}
+#s1 .b1{width:260px;height:260px;background:var(--teal);opacity:.2;top:-70px;right:-70px;}
+#s1 .b2{width:180px;height:180px;background:var(--peach);opacity:.35;bottom:90px;left:-50px;}
+#s1 .inner{position:relative;z-index:5;text-align:center;width:100%;}
+#s1 .pill{display:inline-block;background:var(--teal);color:white;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:22px;}
+#s1 h1{font-family:'Playfair Display',serif;font-size:clamp(36px,9vw,54px);line-height:1.1;color:var(--dark);margin-bottom:18px;}
+#s1 h1 em{color:var(--teal);font-style:italic;}
+#s1 p{font-size:15px;color:#4A3A2A;line-height:1.6;margin-bottom:28px;max-width:300px;margin-left:auto;margin-right:auto;}
+#s1 button{background:var(--orange);color:white;border:none;font-size:16px;font-weight:700;padding:14px 32px;border-radius:50px;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 6px 24px rgba(246,140,36,.35);}
+
+/* S2 */
+#s2{background:var(--teal-d);}
+#s2 .b1{width:240px;height:240px;background:var(--teal);opacity:.2;top:-60px;right:-60px;}
+#s2 .inner{position:relative;z-index:5;width:100%;}
+#s2 h2{font-family:'Playfair Display',serif;font-size:clamp(24px,6vw,34px);color:white;margin-bottom:20px;text-align:center;line-height:1.2;}
+#s2 h2 span{color:var(--peach);font-style:italic;}
+.pb-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.pb-card{background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px 12px;}
+.pb-icon{font-size:26px;margin-bottom:8px;display:block;}
+.pb-card h3{font-size:13px;font-weight:700;color:white;margin-bottom:5px;}
+.pb-card p{font-size:12px;color:rgba(233,237,196,.8);line-height:1.4;}
+
+/* S3 */
+#s3{background:var(--off);}
+#s3 .b1{width:200px;height:200px;background:var(--sage);opacity:.3;top:-50px;left:-50px;}
+#s3 .b2{width:160px;height:160px;background:var(--peach);opacity:.3;bottom:90px;right:-40px;}
+#s3 .inner{position:relative;z-index:5;width:100%;text-align:center;}
+#s3 h2{font-family:'Playfair Display',serif;font-size:clamp(26px,7vw,38px);color:var(--dark);margin-bottom:6px;}
+#s3 .tag{font-size:14px;color:var(--teal);font-weight:500;margin-bottom:24px;display:block;}
+.steps-v{display:flex;flex-direction:column;gap:12px;}
+.step-row{display:flex;align-items:center;gap:14px;background:white;border-radius:14px;padding:12px 14px;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+.step-num{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.n1{background:var(--sage);}.n2{background:var(--peach);}.n3{background:var(--teal);}.n4{background:var(--orange);}
+.step-txt h4{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:2px;}
+.step-txt p{font-size:12px;color:#6B5A4A;}
+
+/* S4 */
+#s4{background:var(--cream);}
+#s4 .b1{width:180px;height:180px;background:var(--teal);opacity:.12;bottom:90px;right:-40px;}
+#s4 .inner{position:relative;z-index:5;width:100%;}
+#s4 h2{font-family:'Playfair Display',serif;font-size:clamp(22px,6vw,32px);color:var(--dark);margin-bottom:16px;text-align:center;}
+.feat-big{background:var(--teal);border-radius:16px;padding:16px;margin-bottom:10px;display:flex;align-items:center;gap:12px;}
+.feat-big .ico{font-size:32px;flex-shrink:0;}
+.feat-big h3{font-size:16px;font-weight:700;color:white;margin-bottom:3px;}
+.feat-big p{font-size:12px;color:rgba(233,237,196,.85);line-height:1.4;}
+.feat-badge{display:inline-block;background:var(--orange);color:white;font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;margin-top:5px;}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.feat-sm{background:white;border-radius:12px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.feat-sm .ico{font-size:22px;margin-bottom:6px;display:block;}
+.feat-sm h3{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:2px;}
+.feat-sm p{font-size:11px;color:#6B5A4A;}
+
+/* S5 */
+#s5{background:var(--off);}
+#s5 .b1{width:180px;height:180px;background:var(--peach);opacity:.25;top:-50px;left:-50px;}
+#s5 .inner{position:relative;z-index:5;width:100%;}
+#s5 h2{font-family:'Playfair Display',serif;font-size:clamp(22px,6vw,32px);color:var(--dark);margin-bottom:10px;text-align:center;}
+.setup{background:var(--teal);color:white;font-size:11px;font-weight:600;padding:7px 14px;border-radius:16px;text-align:center;margin-bottom:12px;display:block;}
+.offers-v{display:flex;flex-direction:column;gap:8px;}
+.oc{border-radius:16px;padding:14px 14px;position:relative;}
+.oc.ess{background:var(--cream);border:2px solid var(--sage);}
+.oc.pro{background:var(--teal-d);}
+.oc.biz{background:var(--peach);border:2px solid var(--bord);}
+.oc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.oc-name{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;}
+.oc.ess .oc-name{color:var(--teal);}.oc.pro .oc-name{color:var(--cream);}.oc.biz .oc-name{color:var(--bord);}
+.oc-pop{background:var(--orange);color:white;font-size:10px;font-weight:800;padding:3px 10px;border-radius:10px;}
+.oc-price{display:flex;align-items:baseline;gap:4px;margin-bottom:8px;}
+.oc-num{font-family:'Playfair Display',serif;font-size:46px;font-weight:900;line-height:1;}
+.oc.ess .oc-num{color:var(--teal);}.oc.pro .oc-num{color:var(--orange);}.oc.biz .oc-num{color:var(--bord);}
+.oc-unit{font-size:13px;font-weight:500;}
+.oc.ess .oc-unit{color:#4A3A2A;}.oc.pro .oc-unit{color:rgba(255,255,255,.7);}.oc.biz .oc-unit{color:#4A2010;}
+.oc-feats{display:grid;grid-template-columns:1fr 1fr;gap:1px 10px;}
+.oc-feat{font-size:12px;}
+.oc.ess .oc-feat{color:#3A2A1A;}.oc.pro .oc-feat{color:rgba(233,237,196,.9);}.oc.biz .oc-feat{color:#3A2010;}
+.roi-s{text-align:center;font-size:12px;color:var(--teal-d);font-style:italic;margin-top:10px;}
+
+/* S6 */
+#s6{background:var(--cream);}
+#s6 .b1{width:200px;height:200px;background:var(--teal);opacity:.1;bottom:90px;right:-50px;}
+#s6 .inner{position:relative;z-index:5;width:100%;}
+#s6 h2{font-family:'Playfair Display',serif;font-size:clamp(24px,6vw,34px);color:var(--dark);margin-bottom:16px;text-align:center;}
+.roi-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
+.rc{background:white;border-radius:14px;padding:12px 8px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.rc-num{font-family:'Playfair Display',serif;font-size:34px;font-weight:900;color:var(--teal);line-height:1;}
+.rc-num span{font-size:14px;}
+.rc h4{font-size:11px;font-weight:700;color:var(--dark);margin:5px 0 3px;}
+.rc p{font-size:10px;color:#6B5A4A;line-height:1.4;}
+.testi{background:var(--teal-d);border-radius:14px;padding:16px;}
+.testi p{font-size:14px;color:white;font-style:italic;line-height:1.6;}
+.testi .auth{font-size:11px;color:var(--cream);margin-top:8px;font-style:normal;font-weight:600;opacity:.8;}
+
+/* S7 */
+#s7{background:var(--teal);}
+#s7 .b1{width:280px;height:280px;background:var(--teal-d);opacity:.4;top:-90px;right:-90px;}
+#s7 .b2{width:180px;height:180px;background:var(--peach);opacity:.15;bottom:90px;left:-50px;}
+#s7 .inner{position:relative;z-index:5;text-align:center;width:100%;}
+#s7 .ey{font-size:14px;color:var(--cream);opacity:.8;font-style:italic;margin-bottom:14px;display:block;}
+#s7 h1{font-family:'Playfair Display',serif;font-size:clamp(38px,9vw,56px);line-height:1.1;color:white;margin-bottom:14px;}
+#s7 p{font-size:15px;color:rgba(233,237,196,.85);margin-bottom:28px;line-height:1.5;}
+#s7 .cta{display:block;width:100%;background:var(--orange);color:white;border:none;font-size:17px;font-weight:700;padding:16px 20px;border-radius:50px;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 6px 28px rgba(246,140,36,.4);margin-bottom:20px;}
+.cl{display:flex;flex-direction:column;gap:8px;align-items:center;}
+.ci{display:flex;align-items:center;gap:6px;}
+.ci span{font-size:16px;font-weight:700;color:white;}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<div class="slide active" id="s1">
+  <div class="b b1"></div><div class="b b2"></div>
+  <div class="inner">
+    <span class="pill">🍴 Servy — HoReCa Tunisie</span>
+    <h1>Votre menu papier<br><em>vous coûte des clients.</em></h1>
+    <p>Servy digitalise votre restaurant en une demi-journée. Vos clients commandent depuis leur téléphone.</p>
+    <button onclick="goTo(1)">Découvrir →</button>
+  </div>
+  <div class="sf">
+    <span class="sfl" style="color:var(--teal)">Servy</span>
+    <span style="opacity:.4">·</span><span style="color:#4A3A2A">+216 55 001 012</span>
+    <span style="opacity:.4">·</span><span style="color:#4A3A2A">servytunisie.com</span>
+  </div>
+</div>
+
+<div class="slide" id="s2">
+  <div class="b b1"></div>
+  <div class="inner">
+    <h2>Sans Servy, votre service<br><span>ressemble à ça :</span></h2>
+    <div class="pb-grid">
+      <div class="pb-card"><span class="pb-icon">📋</span><h3>Commandes ratées</h3><p>Le serveur se trompe ou oublie. Le client repart frustré.</p></div>
+      <div class="pb-card"><span class="pb-icon">⏳</span><h3>Attente longue</h3><p>Le client attend pour commander. Il s'impatiente et commande moins.</p></div>
+      <div class="pb-card"><span class="pb-icon">📉</span><h3>Zéro données</h3><p>Pas d'historique. Pas de stats. Pas de décision éclairée.</p></div>
+      <div class="pb-card"><span class="pb-icon">😰</span><h3>Équipe épuisée</h3><p>Vos serveurs courent partout. Erreurs et stress garantis.</p></div>
+    </div>
+  </div>
+  <div class="sf"><span class="sfl" style="color:rgba(255,255,255,.5)">Servy</span><span style="opacity:.3;color:white">·</span><span style="color:rgba(255,255,255,.4)">servytunisie.com</span></div>
+</div>
+
+<div class="slide" id="s3">
+  <div class="b b1"></div><div class="b b2"></div>
+  <div class="inner">
+    <h2>Comment ça marche ?</h2>
+    <span class="tag">4 étapes. Sans application à télécharger.</span>
+    <div class="steps-v">
+      <div class="step-row"><div class="step-num n1">📱</div><div class="step-txt"><h4>Scan QR</h4><p>Le client scanne le code sur sa table</p></div></div>
+      <div class="step-row"><div class="step-num n2">🍽️</div><div class="step-txt"><h4>Menu digital</h4><p>Il parcourt le menu avec photos et prix</p></div></div>
+      <div class="step-row"><div class="step-num n3">✅</div><div class="step-txt"><h4>Commande</h4><p>Il passe sa commande en 30 secondes</p></div></div>
+      <div class="step-row"><div class="step-num n4">📊</div><div class="step-txt"><h4>Dashboard</h4><p>Vous recevez tout en temps réel</p></div></div>
+    </div>
+  </div>
+  <div class="sf"><span class="sfl" style="color:var(--teal)">Servy</span><span style="opacity:.4">·</span><span style="color:#4A3A2A">servytunisie.com</span></div>
+</div>
+
+<div class="slide" id="s4">
+  <div class="b b1"></div>
+  <div class="inner">
+    <h2>Tout ce dont votre restaurant a besoin.</h2>
+    <div class="feat-big"><span class="ico">📱</span><div><h3>Menu Digital QR</h3><p>Photos, prix, filtres alimentaires. Zéro erreur. Zéro attente.</p><span class="feat-badge">Inclus dans toutes les offres</span></div></div>
+    <div class="feat-grid">
+      <div class="feat-sm"><span class="ico">🔔</span><h3>Appels Serveur</h3><p>Un tap, le serveur arrive.</p></div>
+      <div class="feat-sm"><span class="ico">📊</span><h3>Dashboard Live</h3><p>Ventes en temps réel.</p></div>
+      <div class="feat-sm"><span class="ico">🎮</span><h3>Gamification</h3><p>Clients fidèles et plus.</p></div>
+      <div class="feat-sm"><span class="ico">📦</span><h3>Stocks & Équipe</h3><p>Inventaire automatique.</p></div>
+    </div>
+  </div>
+  <div class="sf"><span class="sfl" style="color:var(--teal)">Servy</span><span style="opacity:.4">·</span><span style="color:#4A3A2A">servytunisie.com</span></div>
+</div>
+
+<div class="slide" id="s5">
+  <div class="b b1"></div>
+  <div class="inner">
+    <h2>Choisissez votre offre.</h2>
+    <span class="setup">⚙ Mise en service : 300 DT — Installation + Formation incluses</span>
+    <div class="offers-v">
+      <div class="oc ess">
+        <div class="oc-top"><span class="oc-name">Essentiel</span><span style="font-size:11px;color:#6B5A4A">Café & snack</span></div>
+        <div class="oc-price"><span class="oc-num">149</span><span class="oc-unit">DT/mois</span></div>
+        <div class="oc-feats"><span class="oc-feat">✓ Menu QR</span><span class="oc-feat">✓ Appels serveur</span><span class="oc-feat">✓ Dashboard</span><span class="oc-feat">✓ Gestion menu</span></div>
+      </div>
+      <div class="oc pro">
+        <div class="oc-top"><span class="oc-name">Pro</span><span class="oc-pop">★ Populaire</span></div>
+        <div class="oc-price"><span class="oc-num">199</span><span class="oc-unit">DT/mois</span></div>
+        <div class="oc-feats"><span class="oc-feat">✓ Tout Essentiel</span><span class="oc-feat">✓ Recommandations</span><span class="oc-feat">✓ Gamification</span><span class="oc-feat">✓ Stocks & équipe</span></div>
+      </div>
+      <div class="oc biz">
+        <div class="oc-top"><span class="oc-name">Business</span><span style="font-size:11px;color:#4A2010">Franchises</span></div>
+        <div class="oc-price"><span class="oc-num">279</span><span class="oc-unit">DT/mois</span></div>
+        <div class="oc-feats"><span class="oc-feat">✓ Tout Pro</span><span class="oc-feat">✓ Multi-sites</span><span class="oc-feat">✓ Franchise</span><span class="oc-feat">✓ Support prioritaire</span></div>
+      </div>
+    </div>
+    <p class="roi-s">→ 149 DT = moins de 5 DT/jour. 1 commande de plus couvre tout.</p>
+  </div>
+  <div class="sf"><span class="sfl" style="color:var(--teal)">Servy</span><span style="opacity:.4">·</span><span style="color:#4A3A2A">servytunisie.com</span></div>
+</div>
+
+<div class="slide" id="s6">
+  <div class="b b1"></div>
+  <div class="inner">
+    <h2>Le calcul est simple.</h2>
+    <div class="roi-cards">
+      <div class="rc"><div class="rc-num">5<span>DT</span></div><h4>Par jour</h4><p>Moins qu'un café par table.</p></div>
+      <div class="rc"><div class="rc-num">+1</div><h4>Commande</h4><p>Couvre l'abonnement mensuel.</p></div>
+      <div class="rc"><div class="rc-num" style="color:var(--orange)">½</div><h4>Journée</h4><p>Pour être opérationnel.</p></div>
+    </div>
+    <div class="testi">
+      <p>"Les clients commandent plus facilement — ils voient les photos et sont tentés. Mon service du midi s'est transformé."</p>
+      <div class="auth">— Gérant, premier établissement pilote Servy</div>
+    </div>
+  </div>
+  <div class="sf"><span class="sfl" style="color:var(--teal)">Servy</span><span style="opacity:.4">·</span><span style="color:#4A3A2A">servytunisie.com</span></div>
+</div>
+
+<div class="slide" id="s7">
+  <div class="b b1"></div><div class="b b2"></div>
+  <div class="inner">
+    <span class="ey">Votre restaurant mérite mieux qu'un carnet papier.</span>
+    <h1>Demandez votre démo gratuite.</h1>
+    <p>On s'occupe de tout — installation incluse. Sans engagement.</p>
+    <button class="cta">📲 Contactez-nous sur WhatsApp</button>
+    <div class="cl">
+      <div class="ci"><span>📞</span><span>+216 55 001 012</span></div>
+      <div class="ci"><span>🌐</span><span>servytunisie.com</span></div>
+    </div>
+  </div>
+</div>
+
+</div>
+<nav class="nav" id="nav"></nav>
+<script>
+let cur=0;const total=7;
+const slides=document.querySelectorAll('.slide');
+const nav=document.getElementById('nav');
+const pb=document.createElement('button');pb.className='nb';pb.textContent='←';pb.onclick=()=>goTo(cur-1);nav.appendChild(pb);
+for(let i=0;i<total;i++){const d=document.createElement('button');d.className='nd'+(i===0?' active':'');d.onclick=(()=>{const n=i;return()=>goTo(n);})();nav.appendChild(d);}
+const nb2=document.createElement('button');nb2.className='nb';nb2.textContent='→';nb2.onclick=()=>goTo(cur+1);nav.appendChild(nb2);
+function goTo(n){if(n<0||n>=total)return;slides[cur].classList.remove('active');slides[cur].classList.add('prev');setTimeout(()=>slides[cur].classList.remove('prev'),500);nav.querySelectorAll('.nd')[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');nav.querySelectorAll('.nd')[cur].classList.add('active');}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')goTo(cur+1);if(e.key==='ArrowLeft')goTo(cur-1);});
+let tx=0;document.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50){dx<0?goTo(cur+1):goTo(cur-1);}},{passive:true});
+</script>
+</body>
+</html>
